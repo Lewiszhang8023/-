@@ -1,0 +1,240 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+  color: #e5eef7;
+  background: #09111f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 1280px;
+  background:
+    radial-gradient(circle at top, rgba(46, 84, 136, 0.35), transparent 30%),
+    #09111f;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.78rem 1rem;
+  background: linear-gradient(135deg, #57b3ff, #6be0c1);
+  color: #05111f;
+  font-weight: 700;
+}
+
+button.ghost,
+.file-input {
+  background: rgba(255, 255, 255, 0.08);
+  color: #dce9f6;
+}
+
+button.danger {
+  background: rgba(255, 107, 107, 0.18);
+  color: #ffdede;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 320px minmax(680px, 1fr) 360px;
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+
+.sidebar,
+.content,
+.qr-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel {
+  background: rgba(9, 17, 31, 0.82);
+  border: 1px solid rgba(146, 180, 255, 0.18);
+  border-radius: 24px;
+  padding: 1rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: #75d6ff;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+.muted {
+  color: #92a8bd;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.stats-grid article {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.9rem;
+  border-radius: 18px;
+}
+
+.stats-grid strong {
+  display: block;
+  font-size: 1.8rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.actions.vertical {
+  flex-direction: column;
+}
+
+.actions.compact button {
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.badge,
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+}
+
+.badge,
+.status.在库 {
+  background: rgba(76, 201, 157, 0.14);
+  color: #85f3c5;
+}
+
+.status.借出 {
+  background: rgba(255, 196, 61, 0.14);
+  color: #ffd36f;
+}
+
+.status.维修中 {
+  background: rgba(255, 107, 107, 0.14);
+  color: #ff9f9f;
+}
+
+.equipment-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.equipment-form label,
+.file-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+input,
+select,
+textarea,
+.file-input {
+  width: 100%;
+  border: 1px solid rgba(146, 180, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  color: #eef6ff;
+  border-radius: 14px;
+  padding: 0.82rem 0.95rem;
+}
+
+.file-input input {
+  display: none;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.85rem;
+  border-bottom: 1px solid rgba(146, 180, 255, 0.12);
+  text-align: left;
+  vertical-align: top;
+}
+
+tr.selected {
+  background: rgba(117, 214, 255, 0.08);
+}
+
+.qr-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.qr-card img {
+  width: 220px;
+  height: 220px;
+  padding: 0.75rem;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.scanner {
+  min-height: 260px;
+  border-radius: 18px;
+  margin-top: 0.75rem;
+  border: 1px dashed rgba(146, 180, 255, 0.28);
+  display: none;
+}
+
+.scanner.active {
+  display: block;
+}
