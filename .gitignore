@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-electron/
+release/
+deliverables/*.tar.gz
+deliverables/*.zip
+.DS_Store
