@@ -1,0 +1,56 @@
+{
+  "name": "photo-gear-manager",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first photography equipment management app with QR code inventory workflows.",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "build": "tsc && vite build && tsc -p electron/tsconfig.json",
+    "dist:mac": "npm run build && electron-builder --mac dmg zip",
+    "preview": "vite preview",
+    "package:source": "bash scripts/package-mac-source.sh"
+  },
+  "build": {
+    "appId": "com.local.photo.gear.manager",
+    "productName": "摄影器材设备管理",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.photography"
+    }
+  },
+  "dependencies": {
+    "html5-qrcode": "^2.3.8",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1",
+    "wait-on": "^8.0.3"
+  },
+  "author": "OpenAI Codex",
+  "optionalDependencies": {
+    "dmg-license": "^1.0.11"
+  }
+}
