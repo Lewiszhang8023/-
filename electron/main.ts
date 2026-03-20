@@ -118,7 +118,9 @@ function getNetworkUrls() {
     .filter((net) => net.family === 'IPv4' && !net.internal)
     .map((net) => ({
       address: net.address,
-      mobileUrl: `http://${net.address}:${API_PORT}/mobile.html`
+      mobileUrl: null,
+      status: 'requires_secure_context' as const,
+      note: `手机摄像头扫码需要 HTTPS 或 localhost；请将 ${net.address}:${API_PORT} 放到受信任的 HTTPS 代理后再打开 /mobile.html。`
     }));
 }
 

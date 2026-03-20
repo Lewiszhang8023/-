@@ -3,7 +3,7 @@ import * as XLSX from 'xlsx';
 import QRCode from 'qrcode';
 import { Html5Qrcode } from 'html5-qrcode';
 import { api } from './api';
-import { BootstrapPayload, emptyForm, Equipment, EquipmentStatus, StockAction, StockLog } from './shared';
+import { BootstrapPayload, emptyForm, Equipment, EquipmentStatus, MobileHost, StockAction, StockLog } from './shared';
 
 type ScanDialogState = {
   item: Equipment;
@@ -20,8 +20,9 @@ function App() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [keyword, setKeyword] = useState('');
   const [statusFilter, setStatusFilter] = useState<'全部' | EquipmentStatus>('全部');
-  const [mobileHosts, setMobileHosts] = useState<{ address: string; mobileUrl: string }[]>([]);
+  const [mobileHosts, setMobileHosts] = useState<MobileHost[]>([]);
   const [dataFilePath, setDataFilePath] = useState('');
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [qrImage, setQrImage] = useState('');
   const [message, setMessage] = useState('');
   const [scanDialog, setScanDialog] = useState<ScanDialogState | null>(null);
@@ -108,23 +109,32 @@ function App() {
     setForm((current) => ({ ...current, [key]: value }));
   }
 
+  function clearForm() {
+    setForm(emptyForm);
+    setEditingId(null);
+  }
+
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    const editingItem = editingId ? items.find((item) => item.id === editingId) ?? null : null;
     const now = new Date().toISOString();
     const payload: Equipment = {
       ...form,
-      id: activeItem?.id ?? crypto.randomUUID(),
+      id: editingItem?.id ?? crypto.randomUUID(),
       updatedAt: now,
-      lastActionAt: activeItem?.lastActionAt ?? now
+      lastActionAt: editingItem?.lastActionAt ?? now
     };
     const result = await api.saveItem(payload);
     hydrate(result);
     setActiveId(payload.id);
+    setEditingId(payload.id);
     setMessage(`${payload.name} 已保存。`);
-    setForm(emptyForm);
+    clearForm();
+    setActiveId(payload.id);
   }
 
   function handleEdit(item: Equipment) {
+    setEditingId(item.id);
     setActiveId(item.id);
     setForm({
       assetCode: item.assetCode,
@@ -148,7 +158,7 @@ function App() {
     hydrate(result);
     if (activeId === id) {
       setActiveId(null);
-      setForm(emptyForm);
+      clearForm();
     }
   }
 
@@ -282,12 +292,16 @@ function App() {
 
           <section className="panel">
             <h2>手机扫码入口</h2>
-            <p className="muted">让 iPhone / Android 手机访问下列同局域网地址即可扫码回传到电脑。</p>
+            <p className="muted">手机摄像头扫码仅能在 HTTPS 或 localhost 这类安全上下文中使用；当前内置服务不会再展示不可用的 HTTP 扫码链接。</p>
             <div className="host-list">
               {mobileHosts.map((host) => (
                 <article key={host.address}>
                   <strong>{host.address}</strong>
-                  <a href={host.mobileUrl} target="_blank" rel="noreferrer">{host.mobileUrl}</a>
+                  {host.mobileUrl ? (
+                    <a href={host.mobileUrl} target="_blank" rel="noreferrer">{host.mobileUrl}</a>
+                  ) : (
+                    <span className="muted">{host.note}</span>
+                  )}
                 </article>
               ))}
             </div>
@@ -299,7 +313,7 @@ function App() {
             <div className="section-title">
               <div>
                 <p className="eyebrow">设备维护</p>
-                <h2>{activeItem ? '编辑设备' : '新增设备'}</h2>
+                <h2>{editingId ? '编辑设备' : '新增设备'}</h2>
               </div>
               <span className="muted">自动适配窗口尺寸</span>
             </div>
@@ -345,7 +359,7 @@ function App() {
               </label>
               <div className="actions full-width">
                 <button type="submit">保存设备</button>
-                <button type="button" className="ghost" onClick={() => setForm(emptyForm)}>清空表单</button>
+                <button type="button" className="ghost" onClick={clearForm}>清空表单</button>
               </div>
             </form>
           </section>

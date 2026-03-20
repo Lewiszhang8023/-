@@ -32,11 +32,18 @@ export type StockLog = {
   timestamp: string;
 };
 
+export type MobileHost = {
+  address: string;
+  mobileUrl: string | null;
+  status: 'ready' | 'requires_secure_context';
+  note: string;
+};
+
 export type BootstrapPayload = {
   items: Equipment[];
   logs: StockLog[];
   apiBaseUrl: string;
-  mobileHosts: { address: string; mobileUrl: string }[];
+  mobileHosts: MobileHost[];
   dataFilePath: string;
 };
 

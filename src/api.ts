@@ -1,6 +1,6 @@
 import { BootstrapPayload, Equipment, StockAction, StockLog } from './shared';
 
-const apiBaseUrl = window.deviceApp?.apiBaseUrl ?? 'http://127.0.0.1:3210';
+const apiBaseUrl = window.deviceApp?.apiBaseUrl ?? window.location.origin;
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${apiBaseUrl}${path}`, {

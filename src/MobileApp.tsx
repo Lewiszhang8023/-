@@ -13,6 +13,10 @@ function MobileApp() {
   const title = useMemo(() => (mode === '出库' ? '手机出库扫码' : '手机入库扫码'), [mode]);
 
   async function startScanner() {
+    if (!window.isSecureContext) {
+      setMessage('当前页面不是安全上下文（需要 HTTPS 或 localhost），手机浏览器无法启用摄像头扫码。');
+      return;
+    }
     if (scannerRef.current) return;
     const scanner = new Html5Qrcode('mobile-reader');
     scannerRef.current = scanner;
