@@ -10,7 +10,8 @@
     "dist:mac": "npm run build && electron-builder --mac dmg zip",
     "preview": "vite preview",
     "package:source": "bash scripts/package-mac-source.sh",
-    "package:downloadables": "bash scripts/package-downloadables.sh"
+    "package:downloadables": "bash scripts/package-downloadables.sh",
+    "dev:web": "vite"
   },
   "build": {
     "appId": "com.local.photo.gear.manager",

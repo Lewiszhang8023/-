@@ -29,6 +29,17 @@ npm install
 npm run dev
 ```
 
+## 先用浏览器跑
+
+如果你想先不启动 Electron，只验证前端页面，可以直接执行：
+
+```bash
+npm install
+npm run dev:web
+```
+
+这时应用会自动切换到浏览器本地演示模式，数据保存在浏览器 `localStorage` 中。
+
 ## 生产构建
 
 ```bash
