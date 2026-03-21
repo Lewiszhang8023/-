@@ -85,3 +85,23 @@ npm run package:downloadables
 - `出入库记录`
 
 导入时至少需要 `设备` 工作表。
+
+
+## 运行不了时先这样排查
+
+```bash
+npm install
+npm run doctor
+```
+
+如果你只是想先看页面是否正常，请优先执行：
+
+```bash
+npm run dev:web
+```
+
+如果你确认依赖都安装好了，再运行桌面版：
+
+```bash
+npm run dev
+```

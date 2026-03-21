@@ -63,3 +63,23 @@ release/
 - 数据默认保存在当前 Mac 本机的 Electron 用户数据目录中。
 - 第一次扫码时，macOS 可能会请求摄像头权限，请允许 Electron 和手机浏览器使用摄像头。
 - 如果你后面想升级成 SQLite / 多用户版，我可以继续帮你改。
+
+
+## 运行不了时先这样排查
+
+```bash
+npm install
+npm run doctor
+```
+
+如果你只是想先看页面是否正常，请优先执行：
+
+```bash
+npm run dev:web
+```
+
+如果你确认依赖都安装好了，再运行桌面版：
+
+```bash
+npm run dev
+```

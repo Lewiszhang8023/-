@@ -11,7 +11,10 @@
     "preview": "vite preview",
     "package:source": "bash scripts/package-mac-source.sh",
     "package:downloadables": "bash scripts/package-downloadables.sh",
-    "dev:web": "vite"
+    "dev:web": "vite",
+    "start:web": "npm run dev:web",
+    "start:desktop": "npm run dev",
+    "doctor": "node scripts/doctor.js"
   },
   "build": {
     "appId": "com.local.photo.gear.manager",
