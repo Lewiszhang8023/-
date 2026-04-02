@@ -28,6 +28,8 @@ input, select, textarea, .file-input {
   border-radius: 24px; box-shadow: 0 20px 42px rgba(0,0,0,0.28);
 }
 .hero { display: flex; justify-content: space-between; gap: 1rem; padding: 1.2rem; margin-bottom: 1rem; align-items: flex-start; }
+.hero h1 { display: flex; align-items: center; gap: 0.6rem; margin: 0; font-size: clamp(1.2rem, 2vw, 1.8rem); }
+.title-icon { width: 28px; height: 28px; }
 .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: flex-end; }
 .badge, .status {
   display: inline-flex; align-items: center; justify-content: center; padding: 0.35rem 0.7rem; border-radius: 999px; font-size: 0.82rem;
@@ -45,6 +47,10 @@ input, select, textarea, .file-input {
   background: rgba(255,255,255,0.05); border-radius: 18px; padding: 0.9rem;
 }
 .stats-grid strong { display: block; font-size: 1.6rem; }
+.category-bars { margin-top: 0.9rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: #cbe4ff; margin-bottom: 0.2rem; }
+.bar-track { width: 100%; background: rgba(255,255,255,0.08); border-radius: 999px; height: 9px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, #43a8ff, #73f0cf); border-radius: 999px; }
 .section-title { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
 .toolbar, .actions, .segmented { display: flex; gap: .7rem; flex-wrap: wrap; }
 .actions.vertical { flex-direction: column; }
@@ -62,6 +68,7 @@ tr.selected { background: rgba(117,214,255,0.08); }
 .scanner { min-height: 260px; border: 1px dashed rgba(148,180,255,.28); border-radius: 18px; display: none; }
 .scanner.active { display: block; }
 .host-list, .log-list { display: flex; flex-direction: column; gap: .75rem; }
+.entry-qr { width: 180px; background: #fff; border-radius: 14px; padding: .5rem; margin-bottom: .7rem; }
 .modal-backdrop {
   position: fixed; inset: 0; background: rgba(0, 6, 12, 0.66); display: grid; place-items: center; padding: 1rem;
 }
